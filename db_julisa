@@ -1,0 +1,57 @@
+
+use `13020220301`;
+Database changed
+MariaDB [13020220301]> show tables;
++-----------------------+
+| Tables_in_13020220301 |
++-----------------------+
+| detail obat           |
+| pasien                |
++-----------------------+
+2 rows in set (0.000 sec)
+
+
+MariaDB [13020220301]> create table transaksi (`id transaksi` varchar(10), `kd obat` varchar(10),`id pasien` varchar(10), `total transaksi` varchar(20), foreign key (`kd obat`) references `detail obat` (`kd obat`),
+    -> foreign key (`id pasien`) references pasien (`id pasien`));
+Query OK, 0 rows affected (0.170 sec)
+
+MariaDB [13020220301]> show tables;
++-----------------------+
+| Tables_in_13020220301 |
++-----------------------+
+| detail obat           |
+| pasien                |
+| transaksi             |
++-----------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [13020220301]> desc `detail obat`;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| kd obat   | varchar(10) | NO   | PRI | NULL    |       |
+| nama obat | varchar(50) | YES  |     | NULL    |       |
+| harga     | int(11)     | YES  |     | NULL    |       |
+| dosis     | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.012 sec)
+
+MariaDB [13020220301]> desc `pasien`;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id pasien   | varchar(10)  | NO   | PRI | NULL    |       |
+| nama pasien | varchar(100) | YES  |     | NULL    |       |
+| kobtak      | varchar(20)  | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+3 rows in set (0.011 sec)
+
+MariaDB [13020220301]> desc `transaksi`;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| id transaksi    | varchar(10) | YES  |     | NULL    |       |
+| kd obat         | varchar(10) | YES  | MUL | NULL    |       |
+| id pasien       | varchar(10) | YES  | MUL | NULL    |       |
+| total transaksi | varchar(20) | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
